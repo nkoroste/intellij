@@ -399,8 +399,10 @@ java_library(
         "clion-2020.2": [":bundled_jsr305"],
         "intellij-2020.1": [":bundled_jsr305"],
         "intellij-2020.2": [":bundled_jsr305"],
+        "intellij-2020.3": [":bundled_jsr305-3.0.2"],
         "intellij-ue-2020.1": ["@jsr305_annotations//jar"],
         "intellij-ue-2020.2": ["@jsr305_annotations//jar"],
+        "intellij-ue-2020.3": [":bundled_jsr305-3.0.2"],
         "android-studio-4.1": [":bundled_jsr305"],
         "android-studio-4.2": ["@jsr305_annotations//jar"],
         "android-studio-2020.3": ["@jsr305_annotations//jar"],
@@ -419,6 +421,18 @@ java_library(
         android_studio = [":jsr305"],
         clion = [":jsr305"],
         intellij = [":jsr305"],
+    ),
+)
+
+# The version of jsr305 bundled with the IntelliJ plugin API.
+java_library(
+    name = "bundled_jsr305-3.0.2",
+    neverlink = 1,
+    visibility = ["//visibility:private"],
+    exports = select_from_plugin_api_directory(
+        android_studio = [":jsr305-3.0.2"],
+        clion = [":jsr305-3.0.2"],
+        intellij = [":jsr305-3.0.2"],
     ),
 )
 
